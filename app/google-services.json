@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "103259703292",
+    "project_id": "skindiagnosis",
+    "storage_bucket": "skindiagnosis.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:103259703292:android:8f14ade40cd2e46f5f9479",
+        "android_client_info": {
+          "package_name": "com.example.skindiagnosisai"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsGFiPGbvLRjQPunhcgvUx3Wrwny9IfkA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

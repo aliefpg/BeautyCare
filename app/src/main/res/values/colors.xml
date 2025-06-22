@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="whitesmoke">#F5F5F5</color>
+
+    <color name="app_background">#F0FAF8</color>
+    <color name="app_primary_text">#4A4A4A</color>
+    <color name="app_button_color">#F8A096</color>
+
+    <color name="app_edittext_background">#FFFFFF</color>
+
+    <color name="app_scan_frame_bg">#FFE0DA</color>
+    <color name="dark_gray">#656565</color>
+
+</resources>

@@ -1,0 +1,9 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.SkinDiagnosisAI" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@color/app_background</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:colorBackground">@color/app_background</item>
+    </style>
+
+    <style name="Theme.SkinDiagnosisAI" parent="Base.Theme.SkinDiagnosisAI" />
+</resources>
