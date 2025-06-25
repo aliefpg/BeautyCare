@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">SkinDiagnosisAI</string>
-    <string name="skin_diagnosis_ai_title">SKIN\nDIAGNOSIS AI</string>
+    <string name="app_name">BeautyCare</string>
+    <string name="skin_diagnosis_ai_title">BeautyCare</string>
     <string name="email_hint">Email</string>
     <string name="password_hint">Password</string>
     <string name="login_button_text">Login</string>

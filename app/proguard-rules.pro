@@ -3,7 +3,7 @@
 -dontwarn java.nio.file.**
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
 -assumevalues class android.os.Build$VERSION {
-    public static final int SDK_INT val(21, 34);
+    public static final int SDK_INT return 21..34;
 }
 
 # Jaga agar semua Fragment yang digunakan tidak dihapus atau diubah namanya.

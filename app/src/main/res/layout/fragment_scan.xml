@@ -33,36 +33,46 @@
 
     <FrameLayout
         android:id="@+id/cameraFrame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_scan_frame_background"
-        android:padding="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="70dp"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleScan"
+        app:layout_constraintWidth_percent="0.9">
+
+        <ImageView
+            android:id="@+id/ivPlaceholder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_scan_frame_background"
+            android:contentDescription="Placeholder"
+            android:padding="16dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_face_placeholder"
+            android:visibility="visible" />
 
         <androidx.camera.view.PreviewView
             android:id="@+id/cameraPreview"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:visibility="gone" />
 
         <ImageView
             android:id="@+id/ivScanFrame"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:contentDescription="Scan Frame Overlay"
             android:src="@drawable/ic_face_scan_frame"
             android:visibility="gone" />
 
-        <ImageView
-            android:id="@+id/ivPlaceholder"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_face_placeholder"
-            android:visibility="visible" />
+        <com.example.skindiagnosisai.BoundingBoxOverlay
+            android:id="@+id/overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
     </FrameLayout>
 
     <com.google.android.material.button.MaterialButton
@@ -71,7 +81,7 @@
         android:layout_height="60dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="80dp"
         android:backgroundTint="@color/app_button_color"
         android:text="@string/scan_wajah_button"
         android:textColor="@android:color/white"

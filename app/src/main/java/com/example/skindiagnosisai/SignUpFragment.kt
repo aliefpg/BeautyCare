@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.skindiagnosisai.databinding.FragmentSignupBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
 
 class SignUpFragment : Fragment() {
 
@@ -33,6 +34,7 @@ class SignUpFragment : Fragment() {
         }
 
         binding.tvLoginLink.setOnClickListener {
+            // Kembali ke halaman login jika sudah punya akun
             findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
         }
     }
@@ -42,39 +44,47 @@ class SignUpFragment : Fragment() {
         val password = binding.etPassword.text.toString().trim()
         val confirmPassword = binding.etConfirmPassword.text.toString().trim()
 
+        // Validasi input (tetap sama)
         if (email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             Toast.makeText(context, "Semua kolom harus diisi", Toast.LENGTH_SHORT).show()
             return
         }
-
         if (password != confirmPassword) {
             Toast.makeText(context, "Password dan konfirmasi password tidak cocok", Toast.LENGTH_SHORT).show()
             return
         }
 
+        binding.btnSignUp.isEnabled = false
+
+        // Proses pembuatan user di Firebase
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    // Pendaftaran berhasil, dapatkan info pengguna yang baru dibuat
-                    val user = auth.currentUser
+                    // --- INI LOGIKA BARU YANG BENAR ---
+                    Toast.makeText(context, "Pendaftaran Berhasil! Silakan login.", Toast.LENGTH_SHORT).show()
 
-                    // Kirim email verifikasi ke pengguna tersebut
-                    user?.sendEmailVerification()?.addOnCompleteListener { verificationTask ->
-                        if (verificationTask.isSuccessful) {
-                            Toast.makeText(context, "Akun berhasil dibuat. Silakan cek email Anda untuk verifikasi.", Toast.LENGTH_LONG).show()
-                        } else {
-                            Toast.makeText(context, "Gagal mengirim email verifikasi.", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-
-                    // Logout pengguna agar sesi tidak langsung aktif
+                    // PENTING: Logout pengguna agar sesi tidak langsung aktif
                     auth.signOut()
 
-                    // Kembali ke halaman login
+                    // DIUBAH: Arahkan ke halaman Login, bukan Scan
                     findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
+
                 } else {
-                    // Jika pendaftaran gagal
-                    Toast.makeText(context, "Pendaftaran Gagal: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                    // Logika jika pendaftaran gagal (tetap sama)
+                    binding.btnSignUp.isEnabled = true
+                    try {
+                        throw task.exception!!
+                    } catch (e: FirebaseAuthException) {
+                        val errorMessage = when (e.errorCode) {
+                            "ERROR_EMAIL_ALREADY_IN_USE" -> "Email ini sudah terdaftar."
+                            "ERROR_WEAK_PASSWORD" -> "Password terlalu lemah. Gunakan minimal 6 karakter."
+                            "ERROR_INVALID_EMAIL" -> "Format email salah."
+                            else -> "Pendaftaran gagal."
+                        }
+                        Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
+                    } catch (e: Exception) {
+                        Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+                    }
                 }
             }
     }
