@@ -13,8 +13,8 @@
 .externalNativeBuild
 .cxx
 local.properties
-/app/src/google-services.json
-/app/release/
-/keystore.jks
-/app/src/main/ml/
-/app/src/main/assets/
+app/google-services.json
+app/release/
+keystore.jks
+app/src/main/ml/
+app/src/main/assets/
